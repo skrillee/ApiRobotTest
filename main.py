@@ -1,3 +1,6 @@
+#! -*- coding: utf-8 -*-
+__author__ = 'Yan.zhe 2023.01.09'
+
 import requests
 import json
 import functools
