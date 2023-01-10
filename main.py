@@ -142,7 +142,7 @@ def outer(origin):
         token = frame_login(base_api=base_api, user_name=user_name, password=password)
         # binding
         frame_binding(token=token, base_api=base_api, user_id=user_id, frame_id=frame_id)
-        # send_pic
+        # send_pic and others
         res = origin(token=token, user_id=user_id, frame_id=frame_id, base_api=base_api)
         # delete
         frame_delete(token=token, user_id=user_id, frame_id=frame_id, base_api=base_api)
@@ -162,9 +162,11 @@ def biuframe_api(**kwargs):
 def start_biuframe_api_test():
     biuframe_api(api_url="biu.aiframe.net", frame_id="5505664517", user_name="NbsDZncnb@163.com",
                  password="ybc19940829", user_id=93213319774)
+    biuframe_api(api_url="meta.aiframe.net", frame_id="6624303444", user_name="yanzhe001@qq.com",
+                 password="ybc19940829", user_id=93213281086)
 
 
 if __name__ == '__main__':
     scheduler = BlockingScheduler()
-    scheduler.add_job(start_biuframe_api_test, 'interval', seconds=10, id='task')
+    scheduler.add_job(start_biuframe_api_test, 'interval', seconds=1800, id='task')
     scheduler.start()
