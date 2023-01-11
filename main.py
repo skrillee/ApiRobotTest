@@ -117,7 +117,7 @@ def frame_delete(**kwargs):
         frame_headers = {"Content-Type": "application/json; charset=utf-8",
                          "Authorization": token}
         res_bind = requests.delete(url=project_oauth_api, data=json.dumps(frame_data), headers=frame_headers)
-        if res_bind.status_code == 205:
+        if res_bind.status_code == 204:
             boot_send_data.append("解绑【pass】")
             # boot_data["content"]["text"] = "【pass】" + base_api + "域名下-解除绑定相框成功"
             # requests.post(url=boot_url, data=json.dumps(boot_data))
