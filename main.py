@@ -152,7 +152,7 @@ def outer(origin):
         # delete
         frame_delete(token=token, user_id=user_id, frame_id=frame_id, base_api=base_api)
         # robot send message
-        result_str = "*域名：" + base_api + "*结果："
+        result_str = "*域名：" + base_api + "\n" + "*结果："
         for rec in boot_send_data:
             result_str += rec
         boot_data["content"]["text"] = result_str
