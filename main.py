@@ -180,5 +180,5 @@ def start_biuframe_api_test():
 
 if __name__ == '__main__':
     scheduler = BlockingScheduler()
-    scheduler.add_job(start_biuframe_api_test, 'interval', seconds=5, id='task')
+    scheduler.add_job(start_biuframe_api_test, 'interval', seconds=1800, id='task')
     scheduler.start()
