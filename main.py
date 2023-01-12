@@ -52,7 +52,7 @@ def frame_binding(**kwargs):
     try:
         # binding
         if token:
-            boot_send_data.append("登录【pass】")
+            boot_send_data.append("*登录【pass】\n")
             # boot_data["content"]["text"] = "【pass】" + base_api + "域名下-app登录成功"
             # requests.post(url=boot_url, data=json.dumps(boot_data))
             frame_url = project_oauth_api
@@ -62,7 +62,7 @@ def frame_binding(**kwargs):
             res_bind = requests.post(url=frame_url, data=json.dumps(frame_data), headers=frame_headers)
             status = res_bind.json()['status']
             if status == "OK":
-                boot_send_data.append("绑定相框【pass】")
+                boot_send_data.append("*绑定相框【pass】\n")
                 # boot_data["content"]["text"] = "【pass】" + base_api + "域名下-绑定相框成功"
                 # requests.post(url=boot_url, data=json.dumps(boot_data))
                 return token
@@ -95,7 +95,7 @@ def send_pic(**kwargs):
         project_oauth_api = "https://" + base_api + "/frame/medias/push"
         res_result = requests.post(url=project_oauth_api, data=json.dumps(data), headers=headers)
         if res_result.status_code == 200:
-            boot_send_data.append("发图【pass】")
+            boot_send_data.append("*发图【pass】\n")
             # boot_data["content"]["text"] = "【pass】" + base_api + "域名下-发图成功"
             # requests.post(url=boot_url, data=json.dumps(boot_data))
         else:
@@ -118,7 +118,7 @@ def frame_delete(**kwargs):
                          "Authorization": token}
         res_bind = requests.delete(url=project_oauth_api, data=json.dumps(frame_data), headers=frame_headers)
         if res_bind.status_code == 204:
-            boot_send_data.append("解绑【pass】")
+            boot_send_data.append("*解绑【pass】\n")
             # boot_data["content"]["text"] = "【pass】" + base_api + "域名下-解除绑定相框成功"
             # requests.post(url=boot_url, data=json.dumps(boot_data))
             return token
@@ -152,7 +152,7 @@ def outer(origin):
         # delete
         frame_delete(token=token, user_id=user_id, frame_id=frame_id, base_api=base_api)
         # robot send message
-        result_str = "*域名：" + base_api + "\n" + "*结果："
+        result_str = "*域名：" + base_api + "\n"
         for rec in boot_send_data:
             result_str += rec
         boot_data["content"]["text"] = result_str
@@ -180,5 +180,5 @@ def start_biuframe_api_test():
 
 if __name__ == '__main__':
     scheduler = BlockingScheduler()
-    scheduler.add_job(start_biuframe_api_test, 'interval', seconds=1800, id='task')
+    scheduler.add_job(start_biuframe_api_test, 'interval', seconds=5, id='task')
     scheduler.start()
